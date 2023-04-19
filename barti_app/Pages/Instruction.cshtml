@@ -14,48 +14,48 @@
 <br>
 <b>1. Sklonowanie repozytorium na lokalne urządzenie:</b><br>
     - git clone https://github.com/bvrtibvrti/barti_app<br>
-
+<br>
 <b>2. Zalogowanie do usługi azure:</b><br>
     - az login<br>
-
+<br>
 <b>3. Wybranie odpowiedniej subskrypcji:</b><br>
     - az account set --subscription "Visual Studio Professional Subscription"<br>
-
+<br>
 <b>4. Utworzenie resource group:</b><br>
     - az group create --name barti_app_rg --location uksouth<br>
-
+<br>
 <b>5. Utworzenie ACR:</b><br>
     - az acr create --resource-group barti_app_rg --name bartiappacr --sku Basic<br>
-
+<br>
 <b>6. Utworzenie AKS:</b><br>
     - az aks create -g barti_app_rg -n helmnightaks --location uksouth --attach-acr bartiappacr --generate-ssh-keys<br>
-
+<br>
 <b>7. Pobranie poświadczeń w celu uzyskania dostępu do aks z poziomu terminala:</b><br>
     - az aks get-credentials --resource-group barti_app_rg --name bartiappaks<br>
-
+<br>
 <b>8. Zbudowanie obrazu na podstawie pliku Dockerfile i umieszczenie go w ACR:</b><br>
     - az acr build --image webapp:v1 --registry bartiappacr --file Dockerfile .<br>
-
+<br>
 <b>9. Utworzenie helm template w folderze z programem:</b><br>
     - helm create helmtemplate<br>
-
+<br>
 <b>10. konfiguracja obrazu. appVersion musi być zgodna z tagiem obrazu w naszym przypadku jest to v1;</b><br>
-
+<br>
 <b>11. Konfigurowanie skąd POD w Klastrze ma pobrać obraz. Dokonuje się tego w pliku values.yaml ścieżka składa się z adresu ACR i nazwy obrazu;</b><br>
-
+<br>
 <b>12. W tym samym pliku co w/w należy również podmienić ClusterIP na LoadBalancer;</b><br>
-
+<br>
 <b>13. Komenda która nagrywa nową konfigurację helm:</b><br>
     - helm install webappnight helmtemplate/<br>
-
+<br>
 <b>14. Komenda do pobrania zewnętrznego IP umożliwiającego połączenie się z aplikacją:</b><br>
     - kubectl get service<br>
-
+<br>
 <b>15. W tym samym pliku co w/w należy również podmienić ClusterIP na LoadBalancer;</b><br>
-
+<br>
 <b>16. Komenda która nagrywa nową konfigurację helm:</b><br>
     - helm install webappnight helmtemplate/<br>
-
+<br>
 <b>17. Komenda do pobrania zewnętrznego IP umożliwiającego połączenie się z aplikacją:</b><br>
     - kubectl get service<br>
 </p>
