@@ -1,0 +1,54 @@
+﻿@page
+@model TimerModel
+@{
+    ViewData["Title"] = "Timer";
+}
+
+<html>
+<head>
+    <title>Stoper</title>
+</head>
+<body>
+    <h1>Stoper</h1>
+    <div id="timer">00:00:00.000</div>
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">Stop</button>
+    <button onclick="reset()">Reset</button>
+
+    <script>
+        var startTime;
+        var elapsedTime = 0;
+        var timerInterval;
+
+        function start() {
+            startTime = new Date().getTime() - elapsedTime;
+            timerInterval = setInterval(updateTimer, 10);
+        }
+
+        function stop() {
+            clearInterval(timerInterval);
+            elapsedTime = new Date().getTime() - startTime;
+        }
+
+        function reset() {
+            clearInterval(timerInterval);
+            elapsedTime = 0;
+            updateTimer();
+        }
+
+        function updateTimer() {
+            var milliseconds = Math.floor((new Date().getTime() - startTime) % 1000);
+            var seconds = Math.floor((new Date().getTime() - startTime) / 1000) % 60;
+            var minutes = Math.floor((new Date().getTime() - startTime) / (1000 * 60)) % 60;
+            var hours = Math.floor((new Date().getTime() - startTime) / (1000 * 60 * 60)) % 24;
+
+            var millisecondsString = ("00" + milliseconds).slice(-3);
+            var secondsString = ("0" + seconds).slice(-2);
+            var minutesString = ("0" + minutes).slice(-2);
+            var hoursString = ("0" + hours).slice(-2);
+
+            document.getElementById("timer").innerHTML = hoursString + ":" + minutesString + ":" + secondsString + "." + millisecondsString;
+        }
+    </script>
+</body>
+</html>
