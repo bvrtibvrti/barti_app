@@ -1,0 +1,37 @@
+﻿@page
+@model ApiModel
+@{
+    ViewData["Title"] = "Api";
+}
+<div class="text-center">
+    <h1 class="display-4"><b>Application Programming Interface (API)</b></h1></div>
+
+<p>
+<b>Co to jest API</b><br/>
+API to akronim oznaczający interfejs programowania aplikacji (ang. Application Programming Interface). Jest to metoda komunikacji pomiędzy składnikami oprogramowania i aplikacjami sieciowymi oraz wymiany danych między oddzielnymi systemami. Integracja API umożliwia rozszerzanie funkcjonalności aplikacji sieciowych poprzez gromadzenie danych ze źródeł zewnętrznych. Ponadto interfejsy API umożliwiają dzielenie dużych systemów na małe usługi, co zapewnia większą elastyczność i przyspiesza proces tworzenia oprogramowania.<br/>
+<br/>
+<b>Zasada działania API</b><br/>
+Zasada działania jest zasadniczo prosta. Aplikacja serwerowa nasłuchuje i czeka na wszelkie żądania (ang. requests) wysyłane przez swoich klientów. W momencie otrzymania konkretnego żądania obsługuje je, wykonując odpowiednią akcję. Na przykładzie naszej aplikacji do zarządzania budżetem domowym: gdy logujesz się do aplikacji, a następnie dodajesz nowy wydatek, strona internetowa wysyła żądanie do aplikacji serwerowej, aby zapisała podany wydatek do bazy danych. Gdy tylko chcesz odczytać istniejące wydatki, strona internetowa wysyła do serwera żądanie o pobranie Twoich wydatków z bazy danych, a następnie przesłanie ich.  
+<br/>
+Aplikacja serwerowa posiada unikalny adres w sieci, dzięki czemu każdy klient wie dokładnie, gdzie należy wysłać żądanie. Dodatkowo każda możliwa operacja jak dodanie wydatku, edycja itd jest ściśle określona przez aplikację serwerową. Aplikacja definiuje jakie akcje może wykonać, jakie dane przyjmuje oraz jakie dane zwraca.<br/>
+<br/>
+<b>Podsumowując cykl pracy z API możemy określić następująco:</b><br/>
+<b>1.</b> Klient preparuje zapytanie w postaci odpowiedniego adresu (endpoint);</br>
+<b>2.</b> Klient wysyła przygotowane zapytanie (request);</br>
+<b>3.</b> System otrzymuje zapytanie klienta i przygotowuje odpowiedź (response);</br>
+<b>4.</b> System zwraca odpowiedź na zapytanie klienta;</br>
+<b>5.</b> Klient otrzymuje i przetwarza odpowiedź.</br>
+<br/>
+<b>Metody HTTP</b><br/>
+<b>GET</b> metoda GET służy do pobierania danych. Przykładowe zapytanie może wyglądać następująco: http://your_api.com/api/resource?page_number=1. Metoda GET zoptymalizowana jest pod względem pobierania danych, dlatego pozwala przesyłać do serwera parametry filtrowania w postaci ‘queryparameters’. Są to parametry na zasadzie klucz wartość - parameter_name=value, które możesz przesłać w zapytaniu. Wyobraź sobie przypadek, w którym chciałbyś/chciałabyś pobrać z serwera listę wydatków z wybranego dnia. Aby to zrealizować, musisz przesłać do serwera odpowiednie żądanie, w którym określisz jaki zasób chcesz pobrać oraz podasz wybraną datę. Przykładowe zapytanie mogłoby wyglądać następująco: http://your_api.com/api/expenses?expense_date=your_date;</br>
+<b>POST</b> metoda POST służy do tworzenia i wysyłania danych. Możesz ją wykorzystać w przypadku np. Gdy chcesz stworzyć nowy wydatek w systemie. Metoda POST zawiera ciało (tzw. Body), które jest niczym innym jak pojemnikiem na dane, które wysyłasz;</br>
+<b>PUT</b> metoda PUT służy do modyfikacji istniejących zasobów. Każde zapytanie musi jasno wskazywać jaki konkretny zasób chcemy zmodyfikować. Przykładowe żądanie mogłoby wyglądać następująco: http://your_api.com/api/expenses/id_zasobu. Body: dane, jakie chcemy wysłać. Np. w formacie JSON;</br>
+<b>DELETE</b> metoda DELETE służy do usuwania istniejących zasobów. Każde zapytanie musi jasno wskazywać jaki konkretny zasób chcemy usunąć. Przykładowe żądanie mogłoby wyglądać następująco: http://your_api.com/api/expenses/id_zasob.</br>
+<br/>
+<b>Materiały dodatkowe:</b><br/>
+<a href="https://www.ibm.com/topics/api">What is an Application Programming Interface (API)? | IBM</a>.<br/>
+<a href="https://www.youtube.com/watch?v=iFMLyMgCUTs&list=PLM-7VG-sgbtBBnWb2Jc5kufgtWYEmiMAw">Intro to APIs Part 1: What is an API?</a>.<br/>
+<a href="https://www.youtube.com/watch?v=_7rT-ixivWU">What is a Web API? - YouTube</a>.<br/>
+<a href="https://www.youtube.com/watch?v=s7wmiS2mSXY">What is an API? - YouTube</a>.<br/>
+</p>
+
