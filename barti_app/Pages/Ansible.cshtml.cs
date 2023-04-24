@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BartiWebApp.Pages
 {
-    public class TerraformModel : PageModel
+    public class AnsibleModel : PageModel
     {
-        private readonly ILogger<TerraformModel> _logger;
+        private readonly ILogger<AnsibleModel> _logger;
 
-        public TerraformModel(ILogger<TerraformModel> logger)
+        public AnsibleModel(ILogger<AnsibleModel> logger)
         {
             _logger = logger;
         }

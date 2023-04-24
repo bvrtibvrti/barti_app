@@ -1,0 +1,73 @@
+﻿@page
+@model AnsibleModel
+@{
+    ViewData["Title"] = "Ansible";
+}
+<div class="text-center">
+    <h1 class="display-4"><b>Ansible</b></h1></div>
+
+<p>
+Ansible® to narzędzie open source do automatyzacji IT, które automatyzuje provisioning, zarządzanie konfiguracją, wdrażanie aplikacji, orkiestrację i wiele innych ręcznych procesów IT. W przeciwieństwie do bardziej uproszczonych narzędzi do zarządzania, użytkownicy Ansible (tacy jak administratorzy systemów, programiści i architekci) mogą używać automatyzacji Ansible do instalowania oprogramowania, automatyzacji codziennych zadań, dostarczania infrastruktury, poprawy bezpieczeństwa i zgodności, łatania systemów oraz udostępniania automatyzacji w całej organizacji. <br/>
+<br/>
+<a href="https://www.redhat.com/en/technologies/management/ansible/what-is-ansible">What is Ansible? (redhat.com)</a>.<br/>
+<a href="https://www.youtube.com/watch?v=fHO1X93e4WA">What is Ansible? - YouTube</a>.<br/>
+<a href="https://www.youtube.com/watch?v=1id6ERvfozo">What is Ansible | Ansible Playbook explained | Ansible Tutorial for Beginners - YouTube</a>.<br/>
+<a href="https://www.youtube.com/watch?v=rx4Uh3jv1cA">Ansible vs. Terraform: What's the difference? - YouTube</a>.<br/>
+<br/>
+<b>DevOps</b><br/>
+Ansible pomaga zautomatyzować wdrażanie wewnętrznie wygenerowanych aplikacji do programów produkcyjnych, aby ułatwić DevOps. Do orkiestracji, automatyzacji, konfiguracji i zarządzania infrastrukturą IT, Ansible jest najpopularniejszym narzędziem DevOps. Zalety Ansible w DevOps obejmują dostosowanie i skalowanie w odpowiedzi na zapotrzebowanie. Poniżej przedstawiono korzyści z zastosowania Ansible w DevOps przy użyciu Ansible:<br/>
+- pętla sprzężenia zwrotnego jest przyspieszana szybciej,  <br/>
+- instalacje są niezawodne;<br/>
+- architektura IT jest koordynowana;<br/>
+- wdrożenia są szybsze.<br/>
+<br/>
+<b>Menaging Docker</b><br/>
+Docker to wydajny framework do sprawnego konstruowania i wykonywania kontenerów na urządzeniach lokalnych i serwerach. Kontenery Dockera można porównać do lekkich urządzeń wirtualnych. Ansible dostarcza solidny zbiór możliwości i wbudowanych modułów, które dzięki prostej konstrukcji ułatwiają budowanie skryptów automatyzacji. Umożliwia to tworzenie zadań i uruchamianie ich w preferowanych ustawieniach. W formie playbooków Ansible wykorzystuje "yet another markup language" czyli język YAML. <br/>
+<br/>
+<b>Utilizing Ansible for automation </b><br/>
+Zautomatyzowanie wdrożenia dowolnego sprzętu będzie pierwszym krokiem w kierunku automatyzacji cyklu życia usług operacyjnych Twojej aplikacji. Ansible może zautomatyzować infrastruktury IT na serwerach typu bare metal, platformach wirtualizacyjnych i serwerach w chmurze. Ponadto może zautomatyzować konfigurację różnych systemów, urządzeń, baz danych, urządzeń pamięci masowej, sieci i zapór. <br/>
+<br/>
+<b>Configuration management</b><br/>
+Ansible to proste, godne zaufania i spójne rozwiązanie do zarządzania konfiguracją. Możesz go szybko skonfigurować, jeśli masz wcześniejsze doświadczenie w IT. Konfiguracje Ansible to opisy podstawowych danych o infrastrukturze, które ludzie mogą odczytać i przetworzyć przez komputery. Do rozpoczęcia monitorowania maszyn potrzebujesz jedynie hasła lub klucza SSH (Secure Socket Shell).  <br/>
+<br/>
+<B>Installing web application using Ansible</B> <br/>
+Ansible umożliwia szybkie i proste wdrażanie aplikacji z kilkoma warstwami. Nie trzeba tworzyć bazy kodu do zarządzania procesami, wystarczy zdefiniować wymagane działania w playbooku, a Ansible określi, jak doprowadzić procesy do pożądanego rezultatu. Innymi słowy, nie będzie potrzeby ręcznego konfigurowania aplikacji na każdej maszynie. Ansible wykorzystuje SSH do komunikacji ze zdalnymi sieciami i realizacji wszystkich instrukcji, gdy moduł jest uruchamiany z urządzenia sterującego. <br/>
+<br/>
+<a href="https://www.spiceworks.com/tech/devops/articles/what-is-ansible/">Ansible and How Does it Work (spiceworks.com)</a>.<br/>
+<br/>
+Ansible wchodzi w interakcję z sieciami i wysyła do nich małe programy, zwane modułami. Moduły te są wykorzystywane do wykonywania zautomatyzowanych zadań jako systemy zaprojektowane jako modele zasobów dla funkcjonowania w pożądanym stanie. Ansible uruchamia te moduły i eliminuje je po wykonaniu zadania. Gdyby moduły nie były dostępne, musiałbyś polegać na procedurach ad hoc i skryptach, aby wykonać zadania. Węzeł zarządzający Ansible jest głównym węzłem nadzorującym wdrożenie Księgi Podrywu. <br/>
+Węzeł zarządzający ustanawia połączenie SSH przed wykonaniem modułów i zainstalowaniem produktu na stacjach roboczych hosta. Gdy moduły zostaną wdrożone, eliminuje je. Tak więc tak to działa w przypadku Ansible. Python jest używany do tworzenia skryptu Ansible i łączy zdalne hosty przez SSH, określone w pliku inwentaryzacyjnym. Ansible jest bezagentowy - co oznacza, że nie wymaga zainstalowania żadnego programu na kontrolowanych przez siebie węzłach. <br/>
+Ansible pobiera dane z inwentarza, aby określić, które maszyny chcesz kontrolować. Ma domyślny plik inwentaryzacyjny, ale użytkownicy mogą go dostosować do zarządzania serwerami, które chcą. Aby połączyć się z serwerami i przeprowadzić zadania, Ansible wykorzystuje protokół SSH. Ansible nawiązuje połączenie ze zdalnym systemem i dystrybuuje moduły wymagane do wykonania polecenia lub playbooka. Ansible wykorzystuje czytelne dla człowieka szablony YAML, co pozwala na automatyzację powtarzalnych procesów bez konieczności opanowania skomplikowanego języka programowania. <br/>
+<br/>
+<a href="https://www.ansible.com/overview/how-ansible-works">How it works (ansible.com)</a>.<br/>
+<br/>
+<b>Architektura Ansible</b><br/>
+<br/>
+<b>Modules</b><br/>
+Moduły to niezbędne oprogramowanie, które Ansible dostarcza z komputera dowodzenia do wszystkich węzłowych punktów sieci lub odległych hostów. Są to z góry ustalone instrukcje, które są wykonywane bezpośrednio na zdalnych hostach. Playbooki uruchamiają moduły, które zarządzają aplikacjami, pakietami i plikami. Ansible wykonuje wszystkie moduły w celu dostarczenia aktualizacji lub wykonania wymaganej czynności, a następnie eliminuje je po ich zakończeniu. Ansible ma ponad 450 modułów do typowych zadań. Ansible ma setki wbudowanych modułów, czyli fragmentów kodu, które są uruchamiane po uruchomieniu playbooka. Playbook ma plays, zawierające różne zadania, które zawierają moduły. <br/>
+<br/>
+<b>Playbooks</b><br/>
+Playbooki dla Ansible są przewodnikami użytkownika specyficznymi dla danego zadania. Playbooki dyktują przepływ pracy, ponieważ funkcje w nich zapisane są wykonywane w takiej kolejności, w jakiej zostały napisane. Są to proste dokumenty tekstowe utworzone w YAML, języku serializacji danych, który rozumieją ludzie. Stanowią one sedno atrakcyjności Ansible, ponieważ opisują zadania, które trzeba wykonać szybko, nie wymagając od użytkownika zapamiętania określonej terminologii. Oprócz możliwości opisywania ustawień, mogą one również orkiestrowywać etapy dowolnego ręcznie ułożonego zadania i wykonywać zadania współbieżnie lub sekwencyjnie.<br/>
+<br/>
+<b>Plugins</b><br/>
+Wtyczki to małe kawałki kodu, które zwiększają funkcjonalność strony internetowej. Ansible posiada kilka z nich, ale można też tworzyć własne. Wtyczki są w tym przypadku specyficznym rodzajem modułu. Zanim moduł zostanie wykonany na węzłach, uruchamiane są wtyczki. Ze względu na logowanie, wtyczki są wykonywane na głównym module sterującym. Masz wtyczki wywołujące, ponieważ pozwalają one połączyć się z różnymi zdarzeniami Ansible w celu wyświetlenia i raportowania. Aby zminimalizować koszty procesów gromadzenia faktów, stosuje się wtyczki cache. Wtyczki akcji to moduły front-end, które wykonują operacje na systemie kontrolera przed bezpośrednim wywołaniem modułów.<br/> 
+<br/>
+<b>Inventories</b><br/>
+Spis obejmuje wszystkie węzły lub hosty, którymi należy się zająć, wraz z ich adresami IP, szczegółami dotyczącymi serwerów, baz danych i innymi informacjami. Wszystkie maszyny (kontrola i węzły) używane z Ansible są wymienione w jednym, łatwym do odczytania pliku zawierającym te wyczerpujące dane. Po zarejestrowaniu spisu można przypisać parametry do wielu hostów, korzystając z prostego formatu tekstowego.<br/>  
+<br/>
+<b>API</b><br/>
+Można użyć interfejsów programowania aplikacji lub interfejsów API, aby zwiększyć możliwości wyboru połączeń przez Ansible. Obejmuje to więcej niż tylko używanie SSH do transmisji i rozciąga się na wywołania zwrotne i inne funkcjonalności. Interfejsy API Ansible służą jako przepustka dla aplikacji chmury publicznej i prywatnej. <br/>
+<br/>
+<b>Hosts and networking</b><br/>
+W architekturze Ansible hosty to struktury węzłowe, którymi zarządza Ansible, a także dowolny komputer (RedHat, Linux, Windows itp.). Wykorzystuje on model danych unikalny dla silników automatyzacji Ansible i może bez przeszkód przemierzać wiele platform sprzętowych. <br/>
+<br/>
+<b>Cloud</b><br/>
+Chmura prywatna lub publiczna to zbiór odległych serwerów, które można wykorzystać do gromadzenia, organizowania i przetwarzania informacji. Zamiast trzymać dane na lokalnym serwerze, systemy te są hostowane przez internet. Wystarczy wdrożyć zasoby i instancje chmury, połączyć je z bazami danych i już jesteś gotowy do zdalnej obsługi swojej pracy.<br/> 
+<br/>
+<B>Configuration management database (CMDB)</B> <br/>
+CMDB to baza danych służąca jako repozytorium danych dla systemów IT. Wdrażając kod Ansible-CMDB, użytkownicy mogą automatycznie przekształcić wyniki funkcji zbierania danych przez Ansible w statyczną stronę podsumowującą HTML.<br/> 
+<br/>
+<a href="https://www.redhat.com/en/topics/automation/what-is-an-ansible-playbook">What is an Ansible Playbook? (redhat.com)</a>.<br/>
+<a href="https://www.spiceworks.com/tech/devops/articles/what-is-ansible/">Ansible and How Does it Work (spiceworks.com)</a>.<br/>
+</p>
+
