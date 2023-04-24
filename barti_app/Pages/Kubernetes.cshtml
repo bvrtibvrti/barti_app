@@ -1,0 +1,99 @@
+﻿@page
+@model KubernetesModel
+@{
+    ViewData["Title"] = "Kubernetes";
+}
+<div class="text-center">
+    <h1 class="display-4"><b>Kubernetes</b></h1></div>
+
+<p>
+<b>Czym jest Kubernetes</b><br/>
+Kubernetes (K8s) to platforma open source, która służy do zarządzania kontenerami na dużą skalę. K8s wspiera automatyzację wdrożeń, skalowanie aplikacji, zarządzanie kontenerami, monitoruje procesy i zmiany. Właściciele aplikacji oraz zespoły developerskie korzystające z platformy mogą skupić się mocniej na rozwoju swojego produktu niż na działaniach DevOps (zarządzaniu infrastrukturą i dopasowywaniu produktu do jej wymagań). Kubernetes pozwala zarządzać klastrami (grupami współpracujących ze sobą serwerów), tak by z perspektywy użytkownika wyglądały one – w uproszczeniu – jak jedna maszyna. K8s zdejmuje z developera obowiązek dostosowywania aplikacji do wymagań infrastruktury – specjalista zleca uruchomienie aplikacji, a Kubernetes może sam rozdzielić usługi między klastry, serwery i skierować się do odpowiednich kontenerów. Kubernetes posiada własną formę load-balancingu, czyli techniki rozpraszania (równoważenia) obciążenia między wiele maszyn. <br/>
+<br/>
+Dokumentacja<br/>
+<a href="https://learn.microsoft.com/en-us/training/modules/intro-to-azure-kubernetes-service/2-what-is-azure-kubernetes-service">What is Azure Kubernetes Service? - Training | Microsoft Learn</a>.<br/>
+<a href="https://kubernetes.io/pl/docs/concepts/overview/what-is-kubernetes/">Kubernetes — co to jest? | Kubernetes</a>.<br/>
+<a href="https://www.youtube.com/watch?v=VnvRFRk_51k">What is Kubernetes | Kubernetes explained in 15 mins - YouTube </a>.<br/>
+<br/>
+<b>Kontenery</b> to wykonywalne jednostki oprogramowania. Kod aplikacji wraz z jego bibliotekami i zależnościami jest w nich spakowany w uniwersalny sposób, aby umożliwić uruchamianie w dowolnym miejscu — na komputerze PC, w tradycyjnym środowisku IT lub w chmurze.<br/>
+<b>Obraz</b> - możemy go porównać do płyty instalacyjnej z grą. Dane zapisane na płycie CD są tylko do odczytu. Przed uruchomieniem gry są one najczęściej kopiowane na dysk twardy, a włożenie płyty do napędu powodowało automatyczne uruchomienie instalatora. Niemalże dokładnie sprawa wygląda z obrazem Dockera. Podczas tworzenia kontenera pliki z obrazu kopiowane są na fragment dysku twardego przeznaczonego tylko dla tego kontenera. Przy uruchamianiu wykonywana jest domyślna komenda startowa zdefiniowana w obrazie.
+<br/>
+<a href="https://www.ibm.com/pl-pl/cloud/learn/containers#:~:text=Czym%20s%C4%85%20kontenery%3F%20Kontenery%20to%20wykonywalne%20jednostki%20oprogramowania.,PC%2C%20w%20tradycyjnym%20%C5%9Brodowisku%20IT%20lub%20w%20chmurze.">Czym są kontenery? - Polska | IBM</a>.<br/>
+<a href="https://azure.microsoft.com/pl-pl/resources/cloud-computing-dictionary/what-is-a-container/">Co to jest kontener? | Microsoft Azure</a>.<br/>
+<a href="https://www.youtube.com/watch?v=0qotVMX-J5s">Wyjaśnienie kontenerów - YouTube</a>.<br/>
+<a href="https://www.youtube.com/watch?v=GeqaTjKMWeY">What is a Docker Container? Docker Demo || Docker Tutorial 2 - YouTube</a>.<br/>
+<a href="https://www.youtube.com/watch?v=Bb9O_TFSZUU&list=PLj-pbEqbjo6ABYxLDCKqvo3e0flutpbCy&ab_channel=Zaprogramuj%C5%BBycie">[Kurs Dockera] Czym jest Docker i jak działa? #1 - YouTube</a>.<br/>
+<br/>
+Plik <b>YAML</b> to dokument tekstowy zawierający dane sformatowane przy użyciu języka YAML (YAML Ain't Markup Language), czytelnego dla człowieka formatu danych używanego do serializacji danych. Służy do odczytu i zapisu danych niezależnych od konkretnego języka programowania. Ponieważ składnia YAML jest neutralna językowo, pliki YML mogą być włączane do programów napisanych w większości popularnych języków programowania, w tym C/C++, Ruby, Python, Java, Perl, C#, PHP i innych.<br/>
+Jednym z najczęstszych zastosowań YAML jest tworzenie plików konfiguracyjnych. Zaleca się, aby pliki konfiguracyjne były napisane w YAML, a nie JSON, mimo że w większości przypadków mogą być używane zamiennie, ponieważ YAML ma lepszą czytelność i jest bardziej przyjazny dla użytkownika.<br/>
+Oprócz zastosowania w Ansible, YAML jest używany do zasobów i wdrożeń Kubernetes.<br/>
+Korzyścią z używania YAML jest to, że pliki YAML mogą być dodawane do kontroli źródła, takich jak Github, dzięki czemu zmiany mogą być śledzone i kontrolowane.<br/>
+<br/>
+<a href="https://www.redhat.com/en/topics/automation/what-is-yaml">What is YAML? (redhat.com)</a>.<br/>
+<a href="https://www.youtube.com/watch?v=qmDzcu5uY1I">Kubernetes YAML File Explained - Deployment and Service | Kubernetes Tutorial 19 - YouTube</a>.<br/>
+<a href="https://www.youtube.com/watch?v=1uFVr15xDGg">Yaml Tutorial | Learn YAML in 18 mins - YouTube</a>.<br/>
+<a href="https://www.youtube.com/watch?v=BEki_rsWu4E">YAML Tutorial | Learn YAML in 10 Minutes - YouTube</a>.<br/>
+<br/>
+<b>POD</b> tworzy model specyficznego dla aplikacji "wirtualnego serwera" i może zawierać różne kontenery aplikacji, które są relatywnie blisko powiązane. Przykładowo, pod może zawierać zarówno kontener z Twoją aplikacją w Node.js, jak i inny kontener dostarczający dane, które mają być opublikowane przez serwer Node.js. Kontenery wewnątrz poda współdzielą adres IP i przestrzeń portów, zawsze są uruchamiane wspólnie w tej samej lokalizacji i współdzielą kontekst wykonawczy na tym samym węźle.<br/>
+Pody są niepodzielnymi jednostkami na platformie Kubernetes. W trakcie tworzenia Deploymentu na Kubernetes, Deployment tworzy Pody zawierające kontenery (w odróżnieniu od tworzenia kontenerów bezpośrednio). Każdy Pod związany jest z węzłem, na którym zostało zlecone jego uruchomienie i pozostaje tam aż do jego wyłączenia (zgodnie z polityką restartowania) lub skasowania.<br/>
+Pod jest uruchamiany na węźle (Node). Węzeł jest maszyną roboczą, fizyczną lub wirtualną, w zależności od klastra. Każdy z węzłów jest zarządzany przez warstwę sterowania (Control Plane). Węzeł może zawierać wiele podów. Warstwa sterowania Kubernetesa automatycznie zleca uruchomienie podów na różnych węzłach w ramach klastra. Automatyczne zlecanie uruchomienia bierze pod uwagę zasoby dostępne na każdym z węzłów. <br/>
+Na każdym węźle Kubernetes działają co najmniej: <br/>
+- Kubelet, proces odpowiedzialny za komunikację pomiędzy warstwą sterowania Kubernetesa i węzłami; zarządza podami i kontenerami działającymi na maszynie. <br/>
+- Proces wykonawczy kontenera (np. Docker), który zajmuje się pobraniem obrazu dla kontenera z repozytorium, rozpakowaniem kontenera i uruchomieniem aplikacji. <br/>
+<br/>
+<a href="https://kubernetes.io/docs/concepts/workloads/pods/">Pods | Kubernetes</a>.<br/>
+<a href="https://www.redhat.com/en/topics/containers/what-is-kubernetes-pod">What is a Kubernetes pod? (redhat.com)</a>.<br/>
+<a href="https://www.youtube.com/watch?v=Krpb44XR0bk&list=PLy7NrYWoggjziYQIDorlXjTvvwweTYoNC&index=2">Kubernetes Components explained! Pods, Services, Secrets, ConfigMap | Kubernetes Tutorial 14 - YouTube</a>.<br/>
+<a href="https://www.youtube.com/watch?v=T4Z7visMM4E">Kubernetes Services explained | ClusterIP vs NodePort vs LoadBalancer vs Headless Service - YouTube</a>.<br/>
+<br/>
+<b>Volumes i Storage</b><br/>
+Zasady przechowywania storage w klastrze:  <br/>
+- Niezależny od życia POD-a;<br/>
+- Wszystkie Nod-y muszą mieć do niego dostęp;<br/>
+- Musi przetrwać awarie klastra.<br/>
+<br/>
+Persistent Volume (PV) –  umożliwia nam zarządzanie storage-m, który może znajdować się w node, chmurze lub lokalnej serwerowni dodatkowo musi być on dostępny dla wszystkich elementów w całym klastrze. <br/>
+Persistent Volume Claim (PVC) - opisujemy w nim zależności, które połączą konkretne PV z POD-em. W momencie kiedy POD zostanie usunięty jego następca dzięki PVC będzie wiedział gdzie poprzednik zapisywał dane i uzyska do nich automatycznie dostęp. Za utworzenie PV odpowiada administrator a PVC deweloper. Rozbicie tego na takie poziomy abstrakcji pozwala nam w łatwy sposób odseparować obowiązki i uniknąć niepotrzebnych konfliktów.  <br/>
+Storage Class (SC) -  umożliwia nam automatyczne tworzenie PV na podstawie wcześniej stworzonych przez dewelopera PVC. Każdy SC musi mieć zdefiniowany provisioner, który określa jaki plugin woluminu jest używany do provisioningu PV. <br/>
+<br/>
+<a href="https://kubernetes.io/docs/concepts/storage/">Storage | Kubernetes</a>.<br/>
+<a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">Persistent Volumes | Kubernetes</a>.<br/>
+<a href="https://kubernetes.io/docs/concepts/storage/storage-classes/">Storage Classes | Kubernetes</a>.<br/>
+<a href="https://www.youtube.com/watch?v=0swOh5C3OVM">Kubernetes Volumes explained | Persistent Volume, Persistent Volume Claim & Storage Class - YouTube</a>.<br/>
+<br/>
+<b>ConfigMap</b><br/>
+W Kubernetes, ConfigMap jest słownikiem par klucz-wartość ciągów reprezentujących konfigurację twoich Podsów. Wartości te można przypisać do nowych kontenerów w skonteneryzowanym klastrze aplikacji, a następnie uczynić te kontenery użytecznymi dla tej samej aplikacji lub można je zmienić, aby utworzyć nowe środowisko na podstawie konfiguracji poprzedniego. <br/>
+ConfigMap używa się, aby oddzielić swój kod aplikacji od konfiguracji klastra. Taka konfiguracja pozwala na dynamiczną i łatwą zmianę konfiguracji w oparciu o środowiska rozwojowe, testowe i produkcyjne. W idealnym przypadku ConfigMap może przechowywać konfigurację dla twojego kodu, ciągów połączeń, nazw użytkowników, haseł, nazw hostów, URI i adresów URL. <br/>
+<br/>
+<a href="https://kubernetes.io/docs/concepts/configuration/configmap/">ConfigMaps | Kubernetes</a>.<br/>
+<a href="https://www.youtube.com/watch?v=FAnQTgr04mU&list=PLy7NrYWoggjziYQIDorlXjTvvwweTYoNC&index=14">Kubernetes ConfigMap and Secret as Kubernetes Volumes | Demo - YouTube</a>.<br/>
+<br/>
+<b>Secret</b><br/>
+A Secret to obiekt, który zawiera niewielką ilość wrażliwych danych, takich jak hasło, token lub klucz. <br/> 
+Ponieważ Sekrety mogą być tworzone niezależnie od wykorzystujących je Podsów, istnieje mniejsze ryzyko, że Sekret (i jego dane) zostanie ujawniony w trakcie tworzenia, przeglądania i edycji Podsów. K8s, oraz aplikacje, które działają w klastrze, mogą również podjąć dodatkowe środki ostrożności z Secrets, takie jak unikanie zapisywania tajnych danych do pamięci nieulotnej. <br/>
+<br/>
+<a href="https://kubernetes.io/docs/concepts/configuration/secret/">Secrets | Kubernetes</a>.<br/>
+<a href="https://www.youtube.com/watch?v=FAnQTgr04mU&list=PLy7NrYWoggjziYQIDorlXjTvvwweTYoNC&index=14">Kubernetes ConfigMap and Secret as Kubernetes Volumes | Demo - YouTube</a>.<br/>
+<br/>
+<b>Ingres</b><br/>
+Kubernetes Ingress to obiekt API, który zapewnia reguły routingu do zarządzania dostępem użytkowników zewnętrznych do usług w klastrze Kubernetes, zazwyczaj poprzez HTTPS/HTTP. Dzięki Ingressowi możesz łatwo skonfigurować reguły routingu ruchu bez tworzenia pęku Load Balancerów lub eksponowania każdej usługi na węźle. To sprawia, że jest to najlepsza opcja do wykorzystania w środowiskach produkcyjnych.  <br/>
+W środowiskach produkcyjnych zazwyczaj potrzebny jest routing oparty na treści, obsługa wielu protokołów i uwierzytelnianie. Ingress pozwala na konfigurację i zarządzanie tymi możliwościami wewnątrz klastra.  <br/>
+Ingress składa się z obiektu Ingress API i kontrolera Ingress. Jak już omówiliśmy, Kubernetes Ingress to obiekt API, który opisuje pożądany stan do ekspozycji usług na zewnątrz klastra Kubernetes. Kontroler Ingress jest niezbędny, ponieważ jest to rzeczywista implementacja interfejsu API Ingress. Kontroler Ingress odczytuje i przetwarza informacje o zasobach Ingress i zwykle działa jako strąki w ramach klastra Kubernetes.   
+Ingress zapewnia następujące elementy: <br/>
+- Zewnętrznie osiągalne adresy URL dla aplikacji wdrożonych w klastrach Kubernetes;<br/>
+- Obsługa routingu opartego na nazwach hostów wirtualnych i URI<br/>
+- Zasay równoważenia obciążenia i ruchu, jak również zakończenia SSL <br/>
+<br/>
+<a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">Ingress | Kubernetes</a>.<br/>
+<a href="https://www.ibm.com/cloud/blog/kubernetes-ingress">What is Kubernetes Ingress? | IBM</a>.<br/>
+<a href="https://www.youtube.com/watch?v=80Ew_fsV4rM&list=PLy7NrYWoggjziYQIDorlXjTvvwweTYoNC&index=10">Kubernetes Ingress Tutorial for Beginners | simply explained | Kubernetes Tutorial 22 - YouTube</a>.<br/>
+<br/>
+<b>StatefulSet</b><br/>
+StatefulSets utrzymuje stan aplikacji poza cyklem życia poszczególnych zasobników. Podobnie jak wdrożenia, zestaw StatefulSet tworzy co najmniej jeden identyczny zasobnik z unikatowymi, trwałymi tożsamościami i stabilnymi nazwami hostów i zarządza nim. Repliki w zestawie StatefulSet są zgodne z sekwencyjnym podejściem do wdrażania, skalowania i uaktualniania. <br/>
+Element StatefulSet jest przydatny w przypadku aplikacji wymagających stabilnych i unikatowych identyfikatorów, magazynu trwałego, uporządkowanego wdrożenia i skalowania. Przykłady tych aplikacji to MySQL, MongoDB, Kafka i Cassandra. Aplikacje bezstanowe, takie jak Apache i Tomcat, nie są zaniepokojone siecią używaną i nie wymagają magazynu trwałego. <br/>
+Głównymi składnikami statefulSets są trwały moduł aprowizacji woluminów i usługa bezgłowa.<br/>
+<br/>
+<a href="https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/">StatefulSet Basics | Kubernetes</a>.<br/>
+<a href="https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/">StatefulSets | Kubernetes</a>.<br/>
+<a href="https://www.youtube.com/watch?v=pPQKAR1pA9U&list=PLy7NrYWoggjziYQIDorlXjTvvwweTYoNC&index=16">Kubernetes StatefulSet simply explained | Deployment vs StatefulSet - YouTube</a>.<br/>
+</p>
