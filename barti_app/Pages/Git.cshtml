@@ -1,0 +1,126 @@
+﻿@page
+@model ApiModel
+@{
+    ViewData["Title"] = "Api";
+}
+<div class="text-center">
+    <h1 class="display-4"><b>Powershell</b></h1></div>
+
+<p>
+<b>Powershell</b><br/>
+<a href="https://www.youtube.com/watch?v=Ebe9D5zRkvM">Git i GitHub w 60 minut - YouTube</a>.<br/>
+<a href="https://www.youtube.com/watch?v=dWT9cr0A-JY">Git merge vs. rebase (i jak robić to dobrze) - YouTube </a>.<br/>
+<a href="https://learngitbranching.js.org/">Learn Git Branching. Platforma learningowa </a>.<br/>
+<a href="https://www.dlatesterow.pl/git-lista-komend/#:~:text=basics%201%20git%20init%20%E2%80%93%20inicjalizuje%20repozytorium%20GIT,do%20repozytorium%20%28np.%20git%20add%20folder%2Fplik.php%29%20Wi%C4%99cej%20pozycji">GIT - lista komend - dlaTesterów.PL (dlatesterow.pl) </a>.<br/>
+<a href="https://www.youtube.com/watch?v=tvHVafvw16Y&list=PLj-pbEqbjo6AKsJ8oE2pvIqsb15mxdrxs&ab_channel=Zaprogramuj%C5%BBycie">[Kurs Gita w praktyce] Czym jest Git i po co Ci GitHub? ⌨️ cz.1 (#9) - YouTube </a>.<br/>
+<br/>
+W nowoczesnym rozwoju oprogramowania, szybkość i zwinność są kluczowe, jeśli chodzi o rozwój i wydawanie oprogramowania. Jednak, gdy masz duży zespół programistów pracujących jednocześnie, rozgałęzianie i scalanie kodu może szybko stać się niechlujne.<br/>
+Dlatego też zespoły muszą mieć przygotowany proces, który pozwoli na wdrożenie wielu zmian jednocześnie. To właśnie tutaj posiadanie efektywnej strategii rozgałęziania staje się priorytetem dla tych zespołów.<br/>
+<br/>
+<b>Czym jest strategia rozgałęziania? </b>
+Gałęzie są głównie używane jako środek dla zespołów do rozwijania funkcji, dając im oddzielną przestrzeń roboczą dla ich kodu. Te gałęzie są zwykle łączone z powrotem do gałęzi głównej po zakończeniu pracy. W ten sposób funkcje (i wszelkie poprawki błędów) są trzymane oddzielnie od siebie, co pozwala na łatwiejsze naprawianie błędów.<br/> 
+Oznacza to, że gałęzie chronią główną linię kodu, a wszelkie zmiany dokonane w danej gałęzi nie mają wpływu na innych deweloperów.<br/>
+Strategia rozgałęziania jest więc strategią, którą zespoły programistów przyjmują podczas pisania, scalania i wdrażania kodu przy użyciu systemu kontroli wersji.<br/>
+Jest to w zasadzie zestaw reguł, które programiści mogą stosować, aby określić, jak współdziałają ze współdzieloną bazą kodu.<br/>
+Taka strategia jest konieczna, ponieważ pomaga utrzymać repozytoria w porządku, aby uniknąć błędów w aplikacji i strasznego piekła scalania, kiedy wielu programistów pracuje jednocześnie i wszyscy dodają swoje zmiany w tym samym czasie.<br/>
+Takie konflikty scalania ostatecznie zniechęciłyby do szybkiego wysyłania kodu, a tym samym utrudniłyby tworzenie i utrzymywanie wydajnego procesu DevOps, ponieważ całym celem DevOps jest stworzenie szybkiego przepływu pracy, który pozwoliłby na wydanie małych partii kodu.<br/>
+Tak więc przestrzeganie strategii rozgałęziania pomoże rozwiązać ten problem, aby deweloperzy mogli pracować razem bez nadeptywania sobie na palce. Innymi słowy, umożliwia zespołom równoległą pracę w celu uzyskania szybszych wydań i mniejszej liczby konfliktów poprzez stworzenie jasnego procesu podczas wprowadzania zmian w kontroli źródła.<br/>
+Kiedy mówimy o gałęziach, mamy na myśli niezależne linie kodu, które odgałęziają się od gałęzi głównej, pozwalając programistom na niezależną pracę przed scaleniem ich zmian z powrotem do bazy kodu. <br/>
+W tym poście przedstawimy niektóre strategie rozgałęziania, które zespoły wykorzystują w celu zorganizowania swojego przepływu pracy, gdzie przyjrzymy się ich zaletom i wadom oraz temu, którą strategię powinieneś wybrać w oparciu o swoje potrzeby, cele i możliwości zespołu. 
+<br/>
+<b>Dlaczego potrzebujesz strategii rozgałęziania </b><br/>
+Jak wspomniano powyżej, posiadanie strategii rozgałęziania jest konieczne, aby uniknąć konfliktów podczas scalania i umożliwić łatwiejszą integrację zmian w pniu głównym. 
+STRATEGIA ROZGAŁĘZIANIA MA NA CELU:<br/>
+- Zwiększyć produktywność poprzez zapewnienie właściwej koordynacji pomiędzy deweloperami;<br/>
+- Umożliwienie równoległego rozwoju;<br/>
+- Pomoc w organizacji serii zaplanowanych, uporządkowanych wydań;<br/>
+- Wyznaczenie jasnej ścieżki podczas wprowadzania zmian w oprogramowaniu aż do produkcji;<br/>
+- Utrzymanie kodu wolnego od błędów, w którym programiści mogą szybko naprawić błędy i wprowadzić te zmiany z powrotem do produkcji bez zakłócania przepływu pracy.<br/>
+<br/>
+<b>Rozgałęzienia w Git </b><br/>
+Rozgałęzienia nie są wyłączną cechą Gita. Jednak w tym artykule skupiamy się na Git ze względu na wiele zalet, jakie oferuje ten model rozgałęziania.<br/>
+W związku z tym, zanim zagłębimy się w różne strategie rozgałęziania, w tym strategie rozgałęziania Git, przyjrzymy się, jak Git faktycznie obsługuje rozgałęzienia i dlaczego wyróżnia się wśród innych narzędzi VCS.<br/>
+Mówiąc najprościej, Git i inne narzędzia kontroli wersji pozwalają programistom śledzić, zarządzać i organizować swój kod.<br/>
+Gałęzie Git pozwalają deweloperom odejść od głównej gałęzi, tworząc oddzielne gałęzie, aby odizolować zmiany kodu. Domyślną gałęzią w Git jest gałąź główna.<br/>
+Największą zaletą gałęzi Git jest to, że jest ona "lekka", co oznacza, że dane składają się z serii snapshotów, więc z każdym commitem, który wykonujesz, Git robi zdjęcie tego, jak wyglądają twoje pliki w tym momencie i przechowuje odniesienie do tego snapshotu. Oznacza to, że gałęzie nie są tylko kopiami systemu plików, ale po prostu wskaźnikiem do najnowszego commitu.<br/>
+Tymczasem inne narzędzia VCS przechowują informacje jako listę zmian opartych na plikach, co może spowalniać pracę i zajmować sporo miejsca.<br/>
+W Gicie, gałąź jest zasadniczo odniesieniem lub wskaźnikiem do najnowszego commitu w danym kontekście; nie jest to kontener dla commitów. Gdy tworzysz nowe commity w nowej gałęzi, Git tworzy nowe wskaźniki, aby śledzić zmiany. Oddziały Gita mogą być więc postrzegane jako wskaźnik do migawki twoich zmian.<br/>
+Podsumowując, model rozgałęziania Git jest lekki w porównaniu do innych systemów kontroli wersji; dlatego tak łatwo i tanio jest tworzyć gałęzie w Git, ponieważ cały kod nie musi być kopiowany do gałęzi tworząc dużą ilość zduplikowanych plików, w przeciwieństwie do innych narzędzi VCS.<br/>
+<br/> 
+<b>Jakie są niektóre popularne strategie rozgałęziania Git?</b><br/> 
+- GitFlow;<br/> 
+- GitHub Flow<br/>
+- GitLab Flow <br/>
+- Rozwój oparty na pniu<br/> 
+<br/> 
+<b>GitFlow</b><br/>  
+Uważany za nieco skomplikowany i zaawansowany dla wielu dzisiejszych projektów, GitFlow umożliwia równoległy rozwój, w którym deweloperzy mogą pracować oddzielnie od gałęzi głównej nad cechami, gdzie gałąź cech jest tworzona z gałęzi głównej.<br/>
+Następnie, gdy zmiany są kompletne, deweloper łączy te zmiany z powrotem do gałęzi głównej w celu wydania.<br/>
+Ta strategia rozgałęziania składa się z następujących gałęzi:<br/> 
+- Master;<br/>
+- Develop;<br/>
+- Feature - do tworzenia nowych funkcjonalności, które rozgałęziają się z gałęzi develop;<br/> 
+- Release - pomaga przygotować nowe wydanie produkcyjne; zwykle rozgałęzia się z gałęzi develop i musi być scalona z powrotem do gałęzi develop i master;<br/>
+- Hotfix - również pomaga w przygotowaniu wydania, ale w przeciwieństwie do gałęzi release, gałęzie hotfix powstają z powodu odkrytego błędu, który musi zostać rozwiązany; umożliwia to programistom kontynuowanie pracy nad własnymi zmianami w gałęzi develop, podczas gdy błąd jest naprawiany.<br/>
+- Gałęzie main i develop są uważane za główne gałęzie, z nieskończonym czasem życia, podczas gdy reszta to gałęzie wspierające, które mają na celu pomoc w równoległym rozwoju między deweloperami, zwykle krótkotrwałe.<br/>
+<br/> 
+<B>Plusy i minusy GitFlow </B><br/>
+Być może najbardziej oczywistą zaletą tego modelu jest to, że pozwala na równoległy rozwój w celu ochrony kodu produkcyjnego, więc główna gałąź pozostaje stabilna do wydania, podczas gdy deweloperzy pracują nad oddzielnymi gałęziami.<br/> 
+Ponadto różne rodzaje gałęzi ułatwiają deweloperom organizację pracy. Ta strategia zawiera oddzielne i proste gałęzie dla konkretnych celów, chociaż z tego powodu może stać się skomplikowana dla wielu przypadków użycia.<br/> 
+Jest to również idealne rozwiązanie w przypadku obsługi wielu wersji kodu produkcyjnego. <br/> 
+Jednak w miarę dodawania kolejnych gałęzi, mogą one stać się trudne do zarządzania, ponieważ deweloperzy łączą swoje zmiany z gałęzi rozwojowej do głównej. Deweloperzy będą musieli najpierw utworzyć gałąź wydania, a następnie upewnić się, że każda ostateczna praca jest również scalona z powrotem do gałęzi rozwoju, a następnie ta gałąź wydania będzie musiała zostać scalona z główną gałęzią.<br/> 
+W przypadku, gdy zmiany są testowane i test się nie powiedzie, coraz trudniej będzie ustalić, gdzie dokładnie jest problem, ponieważ programiści są zagubieni w morzu commitów. <br/>
+W rzeczywistości, ze względu na złożoność GitFlow, mógłby spowolnić proces rozwoju i cykl wydawania. W tym sensie GitFlow nie jest efektywnym podejściem dla zespołów chcących wdrożyć ciągłą integrację i ciągłe dostarczanie.<br/> 
+Dlatego w takim przypadku zaleca się znacznie prostszy przepływ pracy, taki jak GitHub Flow.<br/> 
+<br/> 
+<b>GitHub Flow</b><br/> 
+GitHub Flow jest prostszą alternatywą dla GitFlow idealną dla mniejszych zespołów, ponieważ nie muszą one zarządzać wieloma wersjami.<br/> 
+W przeciwieństwie do GitFlow, ten model nie ma gałęzi wydania. Zaczynasz od głównej gałęzi, a następnie deweloperzy tworzą gałęzie, gałęzie funkcji, które wywodzą się bezpośrednio z mastera, aby odizolować swoją pracę, która następnie jest łączona z powrotem do głównej. Gałąź fabularna jest następnie usuwana. <br/> 
+Główną ideą tego modelu jest utrzymywanie kodu głównego w stałym stanie nadającym się do wdrożenia, co może wspierać procesy ciągłej integracji i ciągłego dostarczania.<br/> 
+<br/>  
+<b>GitHub Flow plusy i minusy </b><br/>
+Github Flow skupia się na zasadach Agile, dlatego jest to szybka i usprawniona strategia rozgałęziania z krótkimi cyklami produkcyjnymi i częstymi wydaniami.<br/>
+Ta strategia pozwala również na szybkie pętle zwrotne, dzięki czemu zespoły mogą szybko zidentyfikować problemy i rozwiązać je. <br/>
+Ponieważ nie ma gałęzi rozwojowej, ponieważ testujesz i automatyzujesz zmiany w jednej gałęzi, co pozwala na szybkie i ciągłe wdrażanie. <br/>
+Ta strategia jest szczególnie odpowiednia dla małych zespołów i aplikacji internetowych i jest idealna, gdy musisz utrzymać jedną wersję produkcyjną. <br/>
+Tym samym strategia ta nie nadaje się do obsługi wielu wersji kodu. <br/>
+Ponadto brak gałęzi rozwojowych sprawia, że strategia ta jest bardziej podatna na błędy, a więc może prowadzić do niestabilnego kodu produkcyjnego, jeśli gałęzie nie są odpowiednio testowane przed scaleniem z przygotowaniem master-release, a poprawki błędów zdarzają się w tej gałęzi. Gałąź główna, w rezultacie, może stać się łatwiej zatłoczona, ponieważ służy zarówno jako gałąź produkcyjna, jak i rozwojowa. <br/>
+Kolejną wadą jest to, że model ten jest bardziej odpowiedni dla małych zespołów, a zatem, gdy zespoły rosną, mogą wystąpić konflikty scalania, ponieważ wszyscy scalają się do tej samej gałęzi i brakuje przejrzystości, co oznacza, że programiści nie mogą zobaczyć, nad czym pracują inni programiści. <br/>
+<br/> 
+<b>GitLab Flow </b><br/> 
+GitLab Flow jest prostszą alternatywą dla GitFlow, która łączy rozwój oparty na cechach i rozgałęzieniach cech ze śledzeniem spraw. <br/> 
+W GitFlow programiści tworzą gałąź rozwojową i czynią ją domyślną, podczas gdy GitLab Flow pracuje od razu z główną gałęzią. <br/> 
+GitLab Flow to świetne rozwiązanie, gdy chcesz utrzymywać wiele środowisk i gdy wolisz mieć środowisko inscenizacyjne oddzielone od środowiska produkcyjnego. Następnie, gdy tylko główna gałąź jest gotowa do wdrożenia, możesz scalić się z powrotem do gałęzi produkcyjnej i wydać ją. <br/> 
+Tak więc ta strategia oferuje propers izolację między środowiskami, umożliwiając programistom utrzymanie kilku wersji oprogramowania w różnych środowiskach. <br/> 
+Podczas gdy GitHub Flow zakłada, że możesz wdrożyć do produkcji za każdym razem, gdy łączysz gałąź fabularną z główną, GitLab Flow stara się rozwiązać ten problem, pozwalając kodowi przejść przez wewnętrzne środowiska, zanim trafi do produkcji, jak widać na poniższym obrazku. <br/> 
+Dlatego ta metoda nadaje się do sytuacji, w których nie kontrolujesz czasu wydania, takich jak aplikacja na iOS, która musi najpierw przejść przez walidację App Store lub gdy masz określone okna wdrażania. <br/> 
+<br/> 
+<b>Rozwój oparty na pniu</b><br/> 
+Rozwój oparty na pniu to strategia rozgałęziania, która w rzeczywistości nie wymaga żadnych gałęzi, ale zamiast tego programiści integrują swoje zmiany we wspólnym pniu co najmniej raz dziennie. Ten wspólny pień powinien być gotowy do wydania w każdej chwili.<br/> 
+Główną ideą tej strategii jest to, że deweloperzy częściej wprowadzają mniejsze zmiany, a zatem celem jest ograniczenie długotrwałych gałęzi i uniknięcie konfliktów scalania, ponieważ wszyscy deweloperzy pracują na tej samej gałęzi. Innymi słowy, deweloperzy dokonują commitów bezpośrednio do pnia bez użycia gałęzi. <br/> 
+W konsekwencji, rozwój oparty na pniu jest kluczowym czynnikiem umożliwiającym ciągłą integrację (CI) i ciągłe dostarczanie (CD), ponieważ zmiany są wykonywane częściej w pniu, często wiele razy dziennie (CI), co pozwala na szybsze wydawanie funkcji (CD). <br/> 
+Strategia ta jest często łączona z feature flag. Ponieważ pień jest zawsze utrzymywany w stanie gotowości do wydania, flagi funkcji pomagają oddzielić wdrożenie od wydania, więc wszelkie zmiany, które nie są gotowe mogą być zawinięte w flagę funkcji i ukryte, podczas gdy funkcje, które są kompletne mogą być wydane użytkownikom końcowym bez opóźnień.  <br/> 
+<br/>  
+<b>Plusy i minusy rozwoju opartego na pniu</b><br/> 
+Jak widzieliśmy, rozwój oparty na pniu toruje drogę dla ciągłej integracji, ponieważ pień jest stale aktualizowany. <br/> 
+Usprawnia również współpracę, ponieważ deweloperzy mają lepszy wgląd w to, jakie zmiany wprowadzają inni deweloperzy, ponieważ polecenia są wprowadzane bezpośrednio do pnia bez potrzeby tworzenia oddziałów. W przeciwieństwie do innych metod rozgałęziania, gdzie każdy deweloper pracuje niezależnie w swojej własnej gałęzi, a wszelkie zmiany, które w niej zachodzą, są widoczne dopiero po połączeniu z główną gałęzią. <br/> 
+Ponieważ rozwój oparty na pniu nie wymaga gałęzi, eliminuje to stres związany z długo żyjącymi gałęziami, a co za tym idzie, konfliktami scalania lub tak zwanym "piekłem scalania", ponieważ deweloperzy znacznie częściej przesuwają małe zmiany. Ułatwia to również rozwiązywanie wszelkich konfliktów, które mogą się pojawić. <br/> 
+Wreszcie, strategia ta pozwala na szybsze wydania, ponieważ współdzielony pień jest utrzymywany w stałym stanie releasable z ciągłym strumieniem pracy zintegrowanym z pniem, co skutkuje bardziej stabilnym wydaniem. <br/> 
+Jednakże, ta strategia jest odpowiednia dla starszych deweloperów, ponieważ oferuje dużą ilość autonomii, którą niedoświadczeni deweloperzy mogą uznać za zniechęcającą, ponieważ wchodzą w bezpośrednią interakcję ze współdzielonym pniem. Tak więc, dla młodszego zespołu, którego praca może wymagać ścisłego monitorowania, możesz zdecydować się na strategię rozgałęziania Git.  <br/> 
+<a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a>.<br/>
+<br/>
+<b>GitLab</b><br/>
+<a href="https://about.gitlab.com/topics/gitops/">What is GitOps? | GitLab</a>.<br/>
+<a href="https://www.youtube.com/watch?v=f5EpcWp0THw&list=RDCMUCdngmbVKX1Tgre699-XLlUA&index=3">What is GitOps, How GitOps works and Why it'What is GitOps, How GitOps works and Why it's so useful - YouTube </a>.<br/>
+<a href="https://www.youtube.com/watch?v=JtZfnrwOOAw&list=PL05JrBw4t0KoixDjLVMzKwVgx0eNyDOIo">What is GitOps? Why is it important? How can you get started? - YouTube</a>.<br/>
+<a href="https://www.youtube.com/watch?v=f5EpcWp0THw">What is GitOps, How GitOps works and Why it's so useful - YouTube</a>.<br/>
+<a href="https://www.youtube.com/watch?v=qP8kir2GUgo">GitLab CI CD Tutorial for Beginners [Crash Course] - YouTube</a>.<br/>
+<a href="https://www.youtube.com/watch?v=tQtni2st3xo">GitOps on Multicloud Explained - YouTube</a>.<br/>
+<br/>
+<b>Git kursy</b><br/>
+<a href="https://learn.microsoft.com/en-us/training/paths/manage-project-lifecycle-github/">Manage the lifecycle of your projects on GitHub - Training | Microsoft Learn</a>.<br/>
+<a href="https://learn.microsoft.com/en-us/training/paths/automate-workflow-github-actions/">Automate your workflow with GitHub Actions - Training | Microsoft Learn</a>.<br/>
+<a href="https://learn.microsoft.com/en-us/training/paths/github-administration-products/">GitHub fundamentals - Administration basics and product features. - Training | Microsoft Learn</a>.<br/>
+<a href="https://learn.microsoft.com/en-us/training/paths/build-community-driven-projects-github/">Build community-driven software projects on GitHub - Training | Microsoft Learn</a>.<br/>
+</p>
+
