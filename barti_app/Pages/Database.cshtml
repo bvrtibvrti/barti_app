@@ -1,0 +1,287 @@
+﻿@page
+@model ApiModel
+@{
+    ViewData["Title"] = "Api";
+}
+<div class="text-center">
+    <h1 class="display-4"><b>Application Programming Interface (API)</b></h1></div>
+
+<p>
+<b>SQL (Structure Query Language) to język zapytań do baz danych.</b><br/>
+<br/>
+<b>SQL możemy podzielić na kilka części:</b><br/>
+<b>DDL - Data Definition Language</b> - cześć języka SQL, odpowiadające za tworzenie, modyfikacje czy usuwanie obiektów bazy danych, operacje takie jak CREATE, ALTER, DROP.<br/>
+<b>DML - Data Manipluation Langugage</b> - zbiór instrukcji języka SQL, pozwalający na wykonanie operacji INSERT, UPDATE,  DELETE (dodawanie, aktualizacja, usuwanie wierszy).<br/>
+<b>DQL - Data Query Language</b> - podstawa pobierania danych, czyli SELECT.<br/>
+<b>DCL - Data Control Language</b> - element pozwalające na dodawanie lub odbieranie uprawnień, GRANT / REVOKE.<br/>
+<b>DTL / TCL - Data Transaction Language / Transaction Control Language</b> - cześć odpowiedzialna za obsługę transakcji: COMMIT, ROLLBACK , SAVEPOINT.<br/>
+<br/>
+<b>Czym jest system zarządzania bazą danych (DBMS - Database Management System)</b><br/>
+<b>DBMS - Database Management System</b> - jest zbiorem reguł (system) opisanych przez programy komputerowe, które pozwalają na manipulację (manage) wartości atrybutów kilku różnych typów jednostek uporządkowanych w sensowny sposób (database).<br/>
+<b>DDL - Data Definition Language</b>, jest elementem języka zapytań do baz danych, który ma na celu, tworzenie, modyfikację oraz usuwanie elementów struktury bazy danych - tabele, schematy, indeksy etc.<br/>
+Do kluczowych elementów składni należą operacje: CREATE, ALTER oraz DELETE.<br/>
+Pomimo, że powyższe operacje są elementem standardu, to ich dodatkowe elementy są różnie implementowane przez różnych dostawców rozwiązań baz danych. Poniżej przykładowe definicje instrukcji CREATE TABLE u różnych dostawców.<br/>
+<b>DCL (Data Control Language)</b> jest elementem języka zapytań do baz danych, który ma na celu, nadawanie i odbieranie dostępu do obiektów bazy danych.<br/>
+<b>Do kluczowych elementów składni należą operacje: GRANT / REVOKE (DENY) </b><br/>
+- GRANT - nadaję dostępy do obiektów bazodanowych;<br/>
+- REVOKE (DENY) - odbiera dostęp do obiektów bazodanowych.<br/>
+<b>TCL (Transaction Control Language)</b> - jest elementem języka zapytań do baz danych, który ma na celu zarządzanie transakcjami w bazie danych.<br/>
+Do kluczowych elementów składni należą operacje: COMMIT, ROLLBACK, SAVEPOINT.<br/>
+- COMMIT - potwierdza transakcje i wszystkie akcje w niej wykonane;<br/>
+- ROLLBACK - wycofuje transakcje i wszystkie akcje w niej wykonane mające wpływ na struktury bazy danych i samych danych.<br/>
+- SAVEPOINT - zapisuje stan, do którego można się odwołać wewnątrz transakcji.<br/>
+<br/>
+<b>Czym jest tranzakcja </b><br/>
+To nic innego jak metoda wykorzystywana przez aplikację do grupowania, operacji odczytu i zapisu w jedną logiczną jednostkę. Wynikiem transakcji jest jeden z dwóch stanów: Sukces (transakcja jest zatwierdzana) lub Porażka (transakcja jest anulowana lub wycofywana).<br/>
+Zerknijmy na klasyczny przykład transakcji: transakcja bankowa wymiany środków pomiędzy dwoma kontami, Kontem A i Kontem B:<br/>
+Właściciel Konta A chce przelać 100 PLN na Konto B Generalnie mamy w tym przykładzie dwa podejścia. <br/>
+Podejście 1:<br/>
+Operacja 1: Stan Konta A = Stan Konta A - 100 PLN;<br/>
+Operacja 2: Stan Konta B = Stan Konta B + 100 PLN;<br/>
+<br/>
+Podejście 2:<br/>
+Operacja 1: Stan Konta B = Stan Konta B + 100 PLN;<br/>
+Operacja 2: Stan Konta A = Stan Konta A - 100 PLN;<br/>
+<br/>
+W rzeczywistości cała operacja jest troszkę bardziej skomplikowana (dochodzą sprawdzenia, reguły biznesowe i prawne banku itp.), jednak idea jest ta sama.<br/>
+Jeżeli dojdzie do awarii w trakcie wykonywania operacji, mamy problem. Albo 100 PLN wyparuje z Konta A i nie pojawi się na Koncie B, lub pojawi się na Koncie B, ale stan Konta A nie zostanie zmieniony. Z pomocą przychodzi transakcja, która obejmując wykonanie operacji w jednym z Podejść, gwarantuje: wykonanie obu operacji z sukcesem (COMMIT), lub brak zmian w stanach obu Kont (cofnięcie zmian / ROLLBACK)<br/>
+<br/>
+BEGIN [TRANSACTION]<br/>
+    StanKontaA = StanKontaA - 100;<br/>
+    StanKontaB = StanKontaB + 100;<br/>
+END [TRANSACTION] (COMMIT)<br/>
+<br/>
+<b>ACID</b><br/>
+ACID jest gwarantem bezpieczeństwa w relacyjnych bazach danych. Jest to zestaw mechanizmów, który ma zapewnić pewną odporność na błędy i bolączki relacyjnych baz danych.<br/>
+ACID to akronim od 4 takich gwarantów:<br/>
+- A (Atomicity) - atomowość<br/>
+Transakcja mimo tego, że jest zbiorem działań musi zostać wykonana jako jedna<br/>
+- C (Consistency) - spójność<br/>
+Spójność gwarantuje, że transakcja nigdy nie pozostawi bazy danych w stanie połowicznie zakończonym.<br/>
+- I (Isolation) - izolacja<br/>
+Każda transakcja musi być wykonywana niezależnie od innych transakcji, które mogą być wykonywane w tym samym czasie.<br/>
+- D (Durability) - trwałość<br/>
+Trwałość gwarantuje, że baza danych będzie śledzić oczekujące zmiany w taki sposób, że serwer będzie mógł odzyskać swoją pozycję po nieprawidłowym zakończeniu transakcji.<br/>
+<br/>
+<b>LOCK</b><br/>
+LOCK ma miejsce gdy dwie transakcje czekają wzajemnie na zwolnienie zasobów i przynajmniej jedna z nich nie może kontynuować swojego działania.<br/>
+Czym w relacyjnych bazach danych jest izolacja?<br/>
+Izolacja oznacza, że jednocześnie wykonywane transakcje są od siebie odizolowane - nie mogą mieć na siebie wpływu. Jest to szczególnie ważne w sytuacji dostępu do tego samego zasobu (tej samej tabeli), w przypadku dostępu do różnych obiektów konflikt nie będzie występował. Inna definicja to taka, w której izolacja jest gwarantem, w którym równoległy sposób wykonania transakcji pozostawi bazę danych w takim stanie, jakby operacje zostały wykonane w sposób sekwencyjny. Warto pamiętać, że jest izolacja to wymiana integralności bazy kosztem wydajności.<br/>
+<br/>
+<b>Normalizacja bazy danych</b><br/>
+<br/>
+CREATE TABLE IF NOT EXISTS contacts( <br/>
+imie_nazwisko TEXT, <br/>
+gender TEXT, <br/>
+city TEXT, <br/>
+country TEXT, <br/>
+id_company INTEGER, <br/>
+company TEXT, <br/>
+added_by TEXT, <br/>
+verified_by TEXT <br/>
+); <br/>
+UWAGA: ta tabele świadomie zawiera błędy strukturalne (nie trzyma się zasad normalizacji itp.) <br/>
+<br/>
+Normalizacja bazy danych to technika organizacji danych w bazie, jest ona systematycznym metodycznym podejście "rozbijania" tabel w celu eliminowania powtórzeń i niechcianych cech operacji dodawania, usuwania i aktualizacji wierszy.<br/> 
+Dwa kluczowe cele normalizacji:<br/>
+1.	Reprezentacja faktów o rzeczywistym świecie w zrozumiały sposób;<br/>
+2.	Ograniczenie nadmiarowego przechowywania faktów i zapobiegania występowaniu nieprawidłowych lub niespójnych danych.<br/>
+<br/>
+<b>INSERT</b> - problemy przy braku normalizacji<br/>
+Kolumna miejscowość (CITY) w tabeli CONTACTS, jest dobrym przykładem, żeby rozpatrzeć problemy braku normalizacji w kontekście operacji INSERT.<br/>
+W przypadku dodawania 100 kontaktów z Poznania wszystkim rekordom przypisujemy taką samą informację tekstową. Z drugiej strony, gdy jakiś kontakt nie podał informacji o miejscowości (nie jest ona wymagana), będziemy musieli wstawić w to pole wartość nieokreśloną NULL.<br/>
+<br/> 
+<b>UPDATE</b> - problemy przy braku normalizacji<br/>
+Kolumna firma (COMPANY) w tabeli CONTACTS, jest dobrym przykładem, żeby rozpatrzeć problemy braku normalizacji w kontekście operacji UPDATE.<br/>
+Jeżeli wiele kontaktów, pracuje dla tej samej firmy - ACME - i firma ta zmieni nazwę, lub zniknie z rynku. Wszystkie rekordy będą musiały mieć zaktualizowaną wartość, pominięcie jakiegoś kontaktu i pozostawienie mu wartości ACME, będzie skutkować niespójnością w danych.<br/>
+<br/>
+<b>DELETE</b> - problemy przy braku normalizacji<br/>
+Załóżmy, że tabela CONTACTS, to jedyne miejsce, w którym przechowujemy informacje o miejscowości (CITY). Jeżeli z jakiegoś powodu usuniemy wszystkie kontakty z Poznania, nie będziemy w stanie odnieść się do tej wartości w przypadku innych zapytań.<br/>
+<br/>
+<b>Komendy</b><br/>
+<br/>
+Polecenie CREATE DATABASE służy do utworzenia nowej bazy danych SQL.<br/>
+CREATE DATABASE databasename<br/>
+<br/>
+Polecenie DROP DATABASE służy do usunięcia istniejącej bazy danych SQL.<br/>
+DROP DATABASE databasename;<br/>
+<br/>
+Polecenie CREATE TABLE służy do utworzenia nowej tabeli w bazie danych.<br/>
+CREATE TABLE table_name ( <br/>
+    column1 datatype, <br/>
+    column2 datatype, <br/>
+    column3 datatype, <br/>
+   .... <br/>
+); <br/>
+---------------------- <br/>
+CREATE TABLE Persons ( <br/>
+    PersonID int, <br/>
+    LastName varchar(255), <br/>
+    FirstName varchar(255), <br/>
+    Address varchar(255), <br/>
+    City varchar(255) <br/>
+); <br/>
+<br/>
+Polecenie DROP TABLE służy do usunięcia istniejącej tabeli w bazie danych.<br/>
+DROP TABLE table_name;<br/>
+<br/>
+Ograniczenie SQL NOT NULL<br/>
+Domyślnie kolumna może zawierać wartości NULL. Ograniczenie NOT NULL wymusza, aby kolumna NIE przyjmowała wartości NULL. Wymusza to, aby pole zawsze zawierało wartość, co oznacza, że nie można wstawić nowego rekordu lub zaktualizować rekordu bez dodania wartości do tego pola.<br/>
+<br/>
+CREATE TABLE Persons ( <br/>
+    ID int NOT NULL, <br/>
+    LastName varchar(255) NOT NULL, <br/>
+    FirstName varchar(255) NOT NULL, <br/>
+    Age int <br/>
+); <br/>
+<br/>
+SQL UNIQUE Ograniczenie<br/>
+Ograniczenie UNIQUE zapewnia, że wszystkie wartości w kolumnie są różne. Zarówno ograniczenie UNIQUE jak i PRIMARY KEY zapewniają gwarancję unikalności dla kolumny lub zestawu kolumn. Ograniczenie PRIMARY KEY automatycznie posiada ograniczenie UNIQUE. Jednakże możesz mieć wiele ograniczeń UNIQUE na tabelę, ale tylko jedno ograniczenie PRIMARY KEY na tabelę.<br/>
+CREATE TABLE Persons ( <br/>
+    ID int NOT NULL UNIQUE, <br/>
+    LastName varchar(255) NOT NULL, <br/>
+    FirstName varchar(255), <br/>
+    Age int <br/>
+); <br/>
+ <br/>
+Ograniczenie PRIMARY KEY w SQL<br/>
+Ograniczenie PRIMARY KEY jednoznacznie identyfikuje każdy rekord w tabeli. Klucze podstawowe muszą zawierać wartości UNIQUE i nie mogą zawierać wartości NULL. Tabela może posiadać tylko JEDEN klucz główny; klucz główny może składać się z jednej lub wielu kolumn (pól).<br/>
+CREATE TABLE Persons ( <br/>
+    ID int NOT NULL, <br/>
+    LastName varchar(255) NOT NULL, <br/>
+    FirstName varchar(255), <br/>
+    Age int, <br/>
+    PRIMARY KEY (ID) <br/>
+); <br/>
+<br/>
+Ograniczenie FOREIGN KEY używane jest do zapobiegania działaniom, które mogłyby zniszczyć powiązania między tabelami. Klucz obcy jest polem (lub zbiorem pól) w jednej tabeli, które odnosi się do klucza głównego w innej tabeli. Tabela z kluczem obcym nazywana jest tabelą podrzędną, a tabela z kluczem głównym nazywana jest tabelą nadrzędną.<br/>
+ 
+CREATE TABLE Orders ( <br/>
+    OrderID int NOT NULL, <br/>
+    OrderNumber int NOT NULL, <br/>
+    PersonID int, <br/>
+    PRIMARY KEY (OrderID), <br/>
+    FOREIGN KEY (PersonID) REFERENCES Persons(PersonID) <br/>
+); <br/>
+ <br/>
+CREATE TABLE Orders ( <br/>
+    OrderID int NOT NULL PRIMARY KEY, <br/>
+    OrderNumber int NOT NULL, <br/>
+    PersonID int FOREIGN KEY REFERENCES Persons(PersonID) <br/>
+); <br/>
+<br/>
+Instrukcja SQL CREATE INDEX <br/>
+Polecenie CREATE INDEX używane jest do tworzenia indeksów w tabelach. Indeksy używane są do pobierania danych z bazy danych szybciej niż w innym przypadku. Użytkownicy nie widzą indeksów, są one po prostu używane do przyspieszenia wyszukiwania/zapytań.<br/>
+CREATE INDEX index_name <br/>
+ON table_name (column1, column2, ...); <br/>
+<br/>
+Instrukcja SQL CREATE VIEW <br/>
+W języku SQL widok jest wirtualną tabelą opartą na zestawie wyników polecenia SQL. Widok zawiera wiersze i kolumny, tak jak prawdziwa tabela. Pola w widoku są polami z jednej lub wielu rzeczywistych tabel w bazie danych. Możesz dodać polecenia SQL i funkcje do widoku i przedstawić dane tak, jakby pochodziły z jednej tabeli. Widok tworzony jest za pomocą polecenia CREATE VIEW.<br/>
+CREATE VIEW view_name AS <br/>
+SELECT column1, column2, ... <br/>
+FROM table_name <br/>
+WHERE condition; <br/>
+<br/>
+CREATE VIEW [Brazil Customers] AS <br/>
+SELECT CustomerName, ContactName <br/>
+FROM Customers <br/>
+WHERE Country = 'Brazil'; <br/>
+<br/>
+Instrukcja SELECT w SQL<br/>
+Instrukcja SELECT jest używana do wybierania danych z bazy danych. Zwrócone dane przechowywane są w tabeli wyników, zwanej zestawem wyników. <br/>
+SELECT column1, column2, ... <br/>
+FROM table_name; <br/>
+ <br/>
+Lub <br/>
+ <br/>
+SELECT * FROM table_name; <- ' * ' oznacza all;l komenda pokaże wszystkie kolumny w tabeli<br/> 
+<br/>
+Klauzula WHERE w SQL<br/>
+Klauzula WHERE służy do filtrowania rekordów. Służy do wyodrębnienia tylko tych rekordów, które spełniają określony warunek. <br/>
+SELECT column1, column2, ... <br/>
+FROM table_name <br/>
+WHERE condition; <br/>
+<br/>
+Operatory AND, OR i NOT w SQL <br/>
+Klauzula WHERE może być połączona z operatorami AND, OR i NOT. Operatory AND i OR używane są do filtrowania rekordów na podstawie więcej niż jednego warunku: Operator AND wyświetla rekord, jeśli wszystkie warunki oddzielone przez AND są TRUE. Operator OR wyświetla rekord, jeśli którykolwiek z warunków oddzielonych przez OR jest TRUE. Operator NOT wyświetla rekord, jeśli warunek (warunki) jest NIE PRAWDA. <br/>
+SELECT column1, column2, ... <br/>
+FROM table_name <br/>
+WHERE condition1 AND condition2 AND condition3 ...; <br/>
+<br/>
+SELECT column1, column2, ... <br/>
+FROM table_name <br/>
+WHERE condition1 OR condition2 OR condition3 ...; <br/>
+<br/>
+SELECT column1, column2, ... <br/>
+FROM table_name <br/>
+WHERE NOT condition; <br/>
+<br/>
+Instrukcja SQL INSERT INTO <br/>
+Instrukcja INSERT INTO służy do wstawiania nowych rekordów do tabeli. <br/>
+INSERT INTO table_name (column1, column2, column3, ...) <br/>
+VALUES (value1, value2, value3, ...); <br/>
+<br/>
+Instrukcja SQL UPDATE <br/>
+Polecenie UPDATE jest używane do modyfikacji istniejących rekordów w tabeli. <br/>
+<br/>
+UPDATE table_name <br/>
+SET column1 = value1, column2 = value2, ... <br/>
+WHERE condition; <br/>
+ <br/>
+Instrukcja SQL DELETE <br/>
+Instrukcja DELETE jest używana do usuwania istniejących rekordów w tabeli. <br/>
+DELETE FROM table_name WHERE condition; <br/>
+<br/>
+<b>Co to jest baza danych SQL?</b><br/>
+Baza danych SQL - znana również jako relacyjna baza danych - nosi nazwę od języka programowania, w którym została napisana - Structured Query Language (SQL). Jest to bardziej sztywny, ustrukturyzowany sposób przechowywania danych. System zarządzania relacyjną bazą danych (RDBMS) wykonuje zapytania, pobiera dane i edytuje je poprzez aktualizację, usuwanie lub tworzenie nowych rekordów. SQL jest lekkim, deklaratywnym językiem, który wykonuje ciężką pracę dla relacyjnej bazy danych, działając jako wersja skryptu po stronie serwera. Bazy danych SQL są nadal popularne, ponieważ w naturalny sposób pasują do wielu uznanych stosów oprogramowania, w tym stosów opartych na LAMP i Ruby. Te bazy danych są dobrze rozumiane i szeroko wspierane, co może być dużą zaletą w przypadku napotkania problemów. Szczególną zaletą języka SQL jest jego prosta, ale potężna klauzula JOIN, która pozwala programistom na pobieranie powiązanych danych przechowywanych w wielu tabelach za pomocą jednego polecenia.<br/>
+<br/>
+<b>Czym jest baza danych NoSQL? </b><br/>
+Bazy danych NoSQL - znane również jako "non SQL" lub "nie tylko SQL" - przechowują dane w formacie innym niż tabele relacyjne. Jeśli wymagania dotyczące danych nie są jasne na początku lub jeśli masz do czynienia z ogromną ilością niestrukturalnych danych, będziesz chciał użyć nierelacyjnych baz danych, ponieważ oferują one większą elastyczność.<br/>
+Jak działają bazy danych NoSQL? Zamiast tabel, bazy danych NoSQL są zorientowane na dokumenty. Są one bardziej jak foldery plików, gromadząc powiązane informacje wszystkich typów, ale niekoniecznie kategoryzując dane. <br/>
+Należy pamiętać, że bazy danych NoSQL oferują większą elastyczność, co czyni je bardziej intuicyjnymi. Bazy danych NoSQL występują w różnych typach w zależności od ich modelu danych. Główne typy to dokument, klucz-wartość, szeroka kolumna i graf.<br/>
+Istnieją cztery popularne typy baz danych NoSQL, a konkretnie: <br/>
+- Model key-value store najmniej skomplikowana opcja NoSQL, która przechowuje dane w sposób pozbawiony schematu, który składa się z indeksowanych kluczy i wartości. Przykłady: Cassandra, Azure, LevelDB oraz Riak.<br/>
+- Column store - magazyn kolumnowy przechowuje tabele danych jako kolumny, a nie wiersze. To coś więcej niż odwrócona tabela - wydzielenie kolumn pozwala na doskonałą skalowalność i wysoką wydajność. Przykłady: HBase, BigTable, HyperTable.<br/>
+- Baza danych dokumentów - biorąc koncepcję klucz-wartość i dodając więcej złożoności, każdy dokument w tym typie bazy danych ma swoje własne dane i unikalny klucz używany do pobierania danych. Jest to świetna opcja do przechowywania, pobierania i zarządzania danymi, które są zorientowane na dokumenty, ale nadal są półstrukturalne. Przykłady: MongoDB, CouchDB.<br/>
+- Grafowa baza danych - posiada dane, które są połączone ze sobą i najlepiej reprezentowane jako graf. Ta metoda jest w stanie osiągnąć wiele złożoności. Przykłady: Polyglot, Neo4J.<br/>
+<br/> 
+<b>Jakie są różnice między SQL a NoSQL? </b><br/>
+Decydując się na użycie bazy danych SQL lub NoSQL, warto zrozumieć niektóre z poniższych kluczowych różnic przed podjęciem decyzji.<br/>
+<b>Struktura danych/modele:</b><br/>
+Pamiętaj, że kluczową różnicą pomiędzy bazami danych SQL i NoSQL jest sposób strukturyzacji danych. Bazy danych SQL są oparte na tabelach, podczas gdy bazy NoSQL są nierelacyjne. Oznacza to, że baza danych SQL zawiera ustrukturyzowane dane i może przeprowadzić analizę przy użyciu modelu relacyjnego. Baza danych NoSQL zawiera dane nieustrukturyzowane, co oznacza, że nie można ich analizować za pomocą predefiniowanych modeli.<br/>
+SQL<br/> 
+SQL lub modele relacyjne działają lepiej w przypadku danych ustrukturyzowanych. Dzieje się tak, ponieważ dane ustrukturyzowane są łatwe do wyszukiwania i analizowania, podobnie jak dane ułożone w tabeli z kolumnami i wierszami.<br/>
+NoSQL<br/>
+Modele NoSQL mają sens dla mniej ustrukturyzowanych zestawów danych, ponieważ nie opierają się na predefiniowanym modelu do analizy danych. <br/>
+<B>Skalowanie</B><br/>
+Rozważ skalowanie swojej bazy danych, gdy zaczniesz obserwować duży wzrost ilości przechowywanych danych. Możesz skalować poziomo poprzez dodanie dodatkowych serwerów do bazy danych lub pionowo poprzez zwiększenie rozmiaru pamięci masowej istniejących serwerów. Sposób skalowania zależy jednak od tego, czy używasz bazy danych SQL czy NoSQL. <br/>
+SQL<br/>
+Większość baz danych SQL jest skalowalna pionowo, co oznacza, że dodajesz więcej RAM lub CPU do istniejącego pojedynczego serwera, aby zwiększyć przestrzeń dyskową.<br/>
+NoSQL<br/>
+Bazy danych NoSQL są skalowalne poziomo, co oznacza, że wystarczy dodać więcej serwerów do bazy danych, aby uzyskać więcej miejsca na dysku. Ze względu na możliwość dodawania dodatkowych serwerów, bazy danych NoSQL oferują znacznie bardziej rozproszoną bazę danych. Popularnym sposobem na poziome skalowanie bazy danych jest sharding. Sharding odnosi się do koncepcji podziału bazy danych na wiele komponentów, które znajdują się na wielu serwerach.<br/>
+<b>Zapytania do danych</b> <br/>
+Jeśli chodzi o zapytania do danych, bazy SQL są zazwyczaj w stanie wykonać bardziej złożone zapytania niż bazy NoSQL, ale niezależnie od tego, jakiego zestawu danych używasz, sposób wykonywania zapytań zależy od danej bazy danych.<br/>
+SQL<br/>
+Systemy SQL są proste, jeśli chodzi o zapytania o dane, ponieważ opierają się na jednym języku. Ponieważ język ten istnieje od dawna, wiele się w nim nie zmieniło, co sprawia, że jest on łatwiejszy do przyswojenia dla członków zespołu, którzy nie są obeznani z technologią.<br/>
+NoSQL <br/>
+Systemy NoSQL są nieco bardziej skomplikowane, jeśli chodzi o wykonywanie zapytań. Ponieważ nie ma ustalonego języka zapytań, Twój zespół będzie prawdopodobnie musiał współpracować z programistą lub kimś bardziej obeznanym z technologią informacyjną, aby wykonać zapytania do danych. <br/>
+<b>Przechowywanie danych</b><br/>
+Jeśli chodzi o przechowywanie danych, SQL jest bardziej prosty, natomiast NoSQL oferuje bardziej złożone rozwiązania w tym zakresie. <br/>
+SQL <br/>
+Model przechowywania danych SQL to tabela z ustalonymi wierszami i kolumnami, którą programiści określają jako relacyjną bazę danych. <br/>
+NoSQL <br/>
+Istnieje wiele modeli przechowywania danych dla baz NoSQL, w tym model wartości klucza, przechowywanie kolumn, baza dokumentów oraz baza grafów. <br/>
+<b>Wydajność</b><br/>
+Jeśli chodzi o wydajność, programiści opracowali bazy danych NoSQL, aby rozwiązać niektóre problemy z wydajnością, z którymi borykają się bazy danych SQL - zwłaszcza jeśli chodzi o skalowalność. <br/>
+SQL <br/>
+Jeśli napotkasz problemy z wydajnością swojej bazy danych SQL, prawdopodobnie będziesz potrzebował większego serwera, aby pomieścić rosnącą ilość danych. Jednak większy serwer nie zawsze jest najbardziej opłacalnym sposobem zarządzania danymi. <br/>
+NoSQL <br/>
+Zamiast kupować większe serwery z większą ilością pamięci, bazy danych NoSQL mogą skalować się horyzontalnie, co oznacza, że możesz dodać nowe serwery do tych, które już posiadasz, w zależności od potrzeb. <br/>
+<b>Popularność i łatwość użycia</b><br/>
+W końcu, jeśli chodzi o popularność i łatwość użycia, zależy to w dużej mierze od rodzaju danych, z którymi będziesz miał do czynienia. <br/>
+SQL <br/>
+Bazy danych SQL są zazwyczaj najlepsze dla złożonych zapytań. <br/>
+NoSQL <br/>
+Bazy danych NoSQL są zazwyczaj najlepszym rozwiązaniem w przypadku korzystania z nieustrukturyzowanych danych. <br/>
+</p>
+
