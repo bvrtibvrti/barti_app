@@ -33,5 +33,37 @@ Aplikacja serwerowa posiada unikalny adres w sieci, dzięki czemu każdy klient 
 <a href="https://www.youtube.com/watch?v=iFMLyMgCUTs&list=PLM-7VG-sgbtBBnWb2Jc5kufgtWYEmiMAw">Intro to APIs Part 1: What is an API?</a>.<br/>
 <a href="https://www.youtube.com/watch?v=_7rT-ixivWU">What is a Web API? - YouTube</a>.<br/>
 <a href="https://www.youtube.com/watch?v=s7wmiS2mSXY">What is an API? - YouTube</a>.<br/>
+<br/>
+<br/>
+<b>REST - Representational State Transfer</b> - styl architektury oprogramowania, opierający się o zbiór wcześniej określonych reguł opisujących jak definiowane są zasoby, a także umożliwiających dostęp do nich. Został on zaprezentowany przez Roya Fieldinga w 2000 roku.</br>
+</br>
+<b>Zasady REST</b></br>
+Aby API można nazwać RESTful lub API RESTowym musi ono spełniać kilka założeń:</br>
+<b>1.</b> Odseparowanie interfejsu użytkownika od operacji na serwerze. Klient poprzez „wydawanie poleceń” nie ma wpływu na to co się dzieje po stronie serwera. Działa to również w drugą stronę – serwer daje klientowi jedynie odpowiedź i nie ma prawa ingerować w UI. Pozwala to na korzystanie z jednego REST API w wielu niezależnych od siebie aplikacjach, a dane pozostaną spójne.</br>
+<b>2.</b> Bezstanowość - mówi się że REST jest stateless - oznacza to, że każde zapytanie od klienta musi zawierać komplet informacji oraz, że serwer nie przechowuje stanu o sesji użytkownika po swojej stronie. W REST nie istnieją takie pojęcia jak chociażby stany czy sesje.</br>
+<b>3.</b> Cacheability - odpowiedź, którą użytkownik otrzyma z REST API musi jasno definiować, czy ma ona być cacheable czy non-cacheable. Ma to znaczenie przy danych, które bardzo szybko stają się nieaktualne oraz przy danych, które aktualizują się relatywnie rzadko - nie ma sensu na przykład cache’ować współrzędnych geograficznych pędzącego samolotu, natomiast już jego kolor czy nazwę już tak.</br>
+<b>4.</b> Endpointy, czyli adresy zasobów, powinny jednoznacznie wskazywać do jakiego zasobu się odwołują. Z ich budowy powinniśmy wiedzieć jaki konkretnie zasób otrzymamy. Co ważne – dane otrzymywane w API powinny być niezależne w żaden sposób od schematu bazy danych w jakiej są przetrzymywane. Oczywiście nie ma przeciwwskazań, aby struktura danych wyglądała identycznie jak schemat bazy danych - niemniej jednak struktura w żaden sposób nie powinna zależeć od tego schematu.</br>
+<b>5.</b> Separacja warstw - powinniśmy oddzielić warstwy dostępu do danych, logiki biznesowej oraz prezentacji. Żadna z warstw nie powinna bezpośrednio oddziaływać na inne warstwy. Użycie (implementacja) pośrednich i zewnętrznych API powinny być ukryte. Przykładem może być wcześniej wspomniany samolot. Dla przykładu, informacja o kolorze może pochodzić z zupełnie innego API - klient nie musi o tym wiedzieć.</br>
+<b>6.</b> Możliwość udostępniania adapterów i skryptów użytkownikom. Jest to opcjonalna reguła, aczkolwiek zdecydowanie warto rozważyć jej zastosowanie. Jeśli wiemy, że klienci będą wykonywać konkretne operacje na konkretnych danych możemy im udostępnić gotowe do tego rozwiązania.</br>
+<br/>
+<b>Materiały dodatkowe:</b><br/>
+<a href="https://www.ibm.com/topics/rest-apis">What is a REST API? IBM</a>.<br/>
+<a href="https://www.redhat.com/en/topics/api/what-is-a-rest-api">What is a REST API? (redhat.com)</a>.<br/>
+<a href="https://www.youtube.com/watch?v=lsMQRaeKNDk">Co to jest REST API? - YouTube </a>.<br/>
+<a href="https://www.youtube.com/watch?v=-mN3VyJuCjM">What Is REST API? Examples And How To Use It - YouTube </a>.<br/>
+<br/>
+<br/>
+<b>Co to jest Postman? </b><br/>
+W prostych słowach, Postman jest aplikacją komputerową używaną do testowania API. Postman wysyła żądanie API do serwera internetowego i odbiera odpowiedź, niezależnie od tego, jaka ona jest. Podczas wysyłania i odbierania żądań w Postmanie nie jest wymagana żadna dodatkowa praca ani ustawianie ram. Szeroko stosowany przez testerów i programistów do lepszego testowania aplikacji. Łatwy do zintegrowania z Twoim potokiem ciągłej integracji (CI) i ciągłego rozwoju.<br/>
+<br/>
+<b>Co sprawia, że Postman jest przydatny?</b><br/>
+Postman ze swoją liczbą funkcji i łatwością pracy był używany przez miliony testerów. Korzystając z jego prostego i przyjaznego interfejsu, możesz łatwo wysyłać żądania, wystarczy wypełnić wymagane dane, wybrać metodę HTTP i nacisnąć przycisk "Wyślij". Inną szeroko stosowaną funkcją jest Automation, która pozwala na tworzenie testów i pisanie zestawów testowych.<br/>
+<br/>
+Choć jest darmowy, Postman oferuje płatną wersję z funkcjami pro, takimi jak dostęp wielu użytkowników, kontrola nad rolami, dostęp, uwierzytelnianie SSO itp. Umożliwienie użytkownikom skonfigurowania wymaganego środowiska, napisania specyfikacji i wreszcie monitorowania każdego kroku, to wszystko sprawia, że Postman jest idealnym narzędziem do testowania.<br/>
+<br/>
+<b>Materiały dodatkowe:</b><br/>
+<a href="https://www.youtube.com/watch?v=YKalL1rVDOE&list=PLM-7VG-sgbtBsenu0CM-UF3NZj3hQFs7E">New to Postman Part 1: sending a request </a>.<br/>
+<a href="https://www.youtube.com/watch?v=pi9MxX0HSHU&list=PLM-7VG-sgbtDD69PEPRQt13DcyN5JUZnS">Writing tests in Postman -- with examples! Part 1 of 2</a>.<br/>
+<br/>
 </p>
 
